@@ -28,10 +28,18 @@ namespace SunSeeker.Controllers
         public async Task<IActionResult> Search(WeatherModel weather)
         {
             // Gör call till API:t
-            var result = await new ApiHelper(config).GetCurrentWeather(weather.City);
+            WeatherModel? result = await new ApiHelper(config).GetCurrentWeather(weather.City);
+
+            // Om data finns
+            if(result != null)
+            {
+                return View("Display", result);
+            }
+
+            return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 
             // Skicka användaren till Display-sidan (med väderinfo)
-            return View("Display");
+            
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

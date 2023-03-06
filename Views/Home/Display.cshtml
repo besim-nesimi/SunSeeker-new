@@ -1,1 +1,19 @@
-﻿<h1>Weather Data</h1>
+﻿@model WeatherModel
+
+<h1>@Model.City</h1>
+<p>Today @Model.Date.DayOfWeek, @Model.Date.ToShortDateString(), @Model.Date.ToShortTimeString()</p>
+
+<div>
+	<label>Temperature:</label>
+	<span>@Model.Temperature</span>
+</div>
+<div>
+	<label>Feels like:</label><span>@Model.FeelsLike</span>
+</div>
+
+@if(@Model.Icons != null && @Model.Icons!.Any()) 
+{
+	@foreach(string icon in Model.Icons!) {
+	<img src="@icon"/>
+	}
+}

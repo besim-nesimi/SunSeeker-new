@@ -17,14 +17,14 @@ namespace SunSeeker.Api
         // Sätt bas address / grund- inställningar för HttpClienten
         public static void InitializeClient() 
         {
-            HttpClient.BaseAddress = new Uri("https://api.weatherstack.com/");
+            HttpClient.BaseAddress = new Uri("http://api.weatherstack.com/");
         }
 
         // Metoden visar aktuella vädret för den stad som valts / skickats till metoden.
         public async Task<WeatherModel?> GetCurrentWeather(string city)
         {
             // Gör själva call:et till API:t - GET request
-            var response = await HttpClient.GetAsync($"current?access_key{config["AccessKey"]}&query={city.ToLower()}");
+            var response = await HttpClient.GetAsync($"current?access_key={config["AccessKey"]}&query={city.ToLower()}");
 
 
             // Om response från call:et är OK (200)...
@@ -42,13 +42,13 @@ namespace SunSeeker.Api
                     // Projicera data-objektet till WeatherModel-objekt
                     WeatherModel weather = new()
                     {
-                        City = data.location.name,
-                        Country = data.location.country,
-                        Temperature = data.current.temperature,
-                        FeelsLike = data.current.feelslike,
+                        City = data.Location.name,
+                        Country = data.Location.country,
+                        Temperature = data.Current.temperature,
+                        FeelsLike = data.Current.feelslike,
                         // Konvertera (pars:a) en sträng till en DateTime.
-                        Date = DateTime.Parse(data.location.localtime),
-                        Icon = data.current.weather_icons[0]
+                        Date = DateTime.Parse(data.Location.localtime),
+                        Icons = data.Current.weather_icons
                     };
 
                     // Returnera WeatherModel objektet som instansierats ovan

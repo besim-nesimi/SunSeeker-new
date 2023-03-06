@@ -13,6 +13,6 @@
 
         public DateTime Date { get; set; }
 
-        public string? Icon { get; set; }
+        public List<string>? Icons { get; set; }
     }
 }

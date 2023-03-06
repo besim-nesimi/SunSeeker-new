@@ -43,9 +43,9 @@
 
     public class Root
     {
-        public Request request { get; set; }
-        public Location location { get; set; }
-        public Current current { get; set; }
+        public Request Request { get; set; }
+        public Location Location { get; set; }
+        public Current Current { get; set; }
     }
 
 
