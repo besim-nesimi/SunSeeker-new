@@ -17,3 +17,12 @@
 	<img src="@icon"/>
 	}
 }
+
+<form method="post" asp-controller="Home" asp-action="Save" >
+	<input type="text" asp-for="@Model.City" hidden />
+	<input type="text" asp-for="@Model.Country" hidden />
+	<input type="number" asp-for="@Model.Temperature" hidden />
+	<input type="number" asp-for="@Model.FeelsLike" hidden />
+	<input type="datetime" asp-for="@Model.Date" hidden />
+	<input class="btn btn-outline-success" type="submit" value="Save to database" />
+</form>

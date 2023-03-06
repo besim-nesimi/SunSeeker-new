@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using SunSeeker.Api;
+using SunSeeker.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,10 @@ builder.Services.AddControllersWithViews();
 
 // Initiera HttpClient
 ApiHelper.InitializeClient();
+
+// Initiera DB kontakt
+var connectionString = builder.Configuration.GetConnectionString("WeatherDbConnection");
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 

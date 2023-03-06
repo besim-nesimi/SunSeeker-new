@@ -1,4 +1,6 @@
-﻿namespace SunSeeker.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SunSeeker.Models
 {
     public class WeatherModel
     {
@@ -13,6 +15,7 @@
 
         public DateTime Date { get; set; }
 
+        [NotMapped]
         public List<string>? Icons { get; set; }
     }
 }
