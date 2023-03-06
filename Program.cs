@@ -1,9 +1,14 @@
+using SunSeeker.Api;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 //var accessKey = builder.Configuration["AccessKey"];
+
+// Initiera HttpClient
+ApiHelper.InitializeClient();
 
 var app = builder.Build();
 
